@@ -17,10 +17,6 @@ public:
         this->num=n;
     }
     void aksTest() const;
-    void lucasTest() const;
-    void trivialTest() const;
-    void millerRabinTest() const;
-    void pepinTest() const;
 };
 long long gcd(long long a,long long n) 
 {
