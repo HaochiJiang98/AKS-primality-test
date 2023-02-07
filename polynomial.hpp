@@ -2,7 +2,7 @@
 #define _POLYNOMIAL_HPP
 #include <vector>
 #include <algorithm>
-/*Here is a polynomial over ring Zn*/
+/*Here is a polynomial class for polynomials over ring Zn*/
 class Polynomial
 {   
 public:
@@ -21,6 +21,7 @@ public:
     void modr(unsigned int const &r);
     bool Isequal(Polynomial const & Q) const;
 };
+/*multiplication for polynomials */
 Polynomial operator*(Polynomial const & P,Polynomial const & Q){
     unsigned int degree1=P.Poly.size()-1;
     unsigned int degree2=Q.Poly.size()-1;
@@ -45,6 +46,7 @@ Polynomial operator*(Polynomial const & P,Polynomial const & Q){
     Polynomial PQ(poly2,P.n);
     return PQ;
 }
+/*Modulo x^r-1*/
 void Polynomial::modr(unsigned int const & r) 
 {
     std::vector<long long> temp;
