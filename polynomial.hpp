@@ -25,12 +25,15 @@ Polynomial operator*(Polynomial const & P,Polynomial const & Q){
     unsigned int degree1=P.Poly.size()-1;
     unsigned int degree2=Q.Poly.size()-1;
     std::vector<unsigned long long> poly2;
+    unsigned long long n=P.n;
     for (unsigned int i=0;i<=degree1+degree2;i++){
         unsigned long long temp=0;
         for(int j=std::max(0,(int)(i-degree2));j<=(int)std::min(i,degree1);j++){
             temp=temp+P.Poly[j]*Q.Poly[i-j];
+            if(temp>=n){
+                temp=temp%n;
+            }
         }
-        temp=temp%(P.n);
         poly2.push_back(temp);
     }
     while (poly2[poly2.size()-1]==0)
@@ -42,7 +45,7 @@ Polynomial operator*(Polynomial const & P,Polynomial const & Q){
         }
     }
     
-    Polynomial PQ(poly2,P.n);
+    Polynomial PQ(poly2,n);
     return PQ;
 }
 void Polynomial::modr(unsigned int const & r) 
@@ -55,10 +58,10 @@ void Polynomial::modr(unsigned int const & r)
         }else{
            unsigned int j=i%r;
            temp[j]=temp[j]+Poly[i];
+           if(temp[j]>=n){
+            temp[j]=temp[j]%n;
+           }
         }
-    }
-    for(unsigned i=0;i<temp.size();i++){
-        temp[i]=temp[i]%n;
     }
     while (temp[temp.size()-1]==0)
     {
