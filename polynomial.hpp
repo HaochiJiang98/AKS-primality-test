@@ -2,14 +2,14 @@
 #define _POLYNOMIAL_HPP
 #include <vector>
 #include <algorithm>
-/*Here is a polynomial class for polynomials over ring Zn*/
+/*Here is a polynomial over ring Zn*/
 class Polynomial
 {   
 public:
-    long long n;
-    std::vector<long long> Poly;
+    unsigned long long n;
+    std::vector<unsigned long long> Poly;
     Polynomial() = default;
-    Polynomial(std::vector<long long> P, long long num){
+    Polynomial(std::vector<unsigned long long> P, unsigned long long num){
         this->Poly=P;
         this->n=num;
     }
@@ -21,13 +21,12 @@ public:
     void modr(unsigned int const &r);
     bool Isequal(Polynomial const & Q) const;
 };
-/*multiplication for polynomials */
 Polynomial operator*(Polynomial const & P,Polynomial const & Q){
     unsigned int degree1=P.Poly.size()-1;
     unsigned int degree2=Q.Poly.size()-1;
-    std::vector<long long> poly2;
+    std::vector<unsigned long long> poly2;
     for (unsigned int i=0;i<=degree1+degree2;i++){
-        long long temp=0;
+        unsigned long long temp=0;
         for(int j=std::max(0,(int)(i-degree2));j<=(int)std::min(i,degree1);j++){
             temp=temp+P.Poly[j]*Q.Poly[i-j];
         }
@@ -46,10 +45,9 @@ Polynomial operator*(Polynomial const & P,Polynomial const & Q){
     Polynomial PQ(poly2,P.n);
     return PQ;
 }
-/*Modulo x^r-1*/
 void Polynomial::modr(unsigned int const & r) 
 {
-    std::vector<long long> temp;
+    std::vector<unsigned long long> temp;
     unsigned int degree =Poly.size()-1;
     for(unsigned i=0;i<=degree;i++){
         if(i<=r-1){
@@ -61,9 +59,6 @@ void Polynomial::modr(unsigned int const & r)
     }
     for(unsigned i=0;i<temp.size();i++){
         temp[i]=temp[i]%n;
-        if(temp[i]<0){
-            temp[i]=temp[i]+n;
-        }
     }
     while (temp[temp.size()-1]==0)
     {

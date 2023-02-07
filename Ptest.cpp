@@ -15,11 +15,11 @@ void Ptest::aksTest() const
         for(unsigned int a=r;a>1;a--){
             if(gcd(a,num)>1 and gcd(a,num)<num){
                 cout<<"Composite"<<endl;
-                step3=false;
+                step2=false;
                 break;
             }
         }
-        if(step3){
+        if(step2){
             if(r>=num){
                 cout<<"Prime"<<endl;
             }else{
@@ -27,9 +27,9 @@ void Ptest::aksTest() const
                 unsigned int phi=euler(r);
                 unsigned int k=floor(pow(phi,0.5)*std::log2(num));
                 for(unsigned i=1;i<=k;i++){
-                    vector<long long> v1={i,1};
-                    vector<long long> v2(num%r+1);
-                    v2[0]=(long long)i%num;
+                    vector<unsigned long long> v1={i,1};
+                    vector<unsigned long long> v2(num%r+1);
+                    v2[0]=(unsigned long long)i%num;
                     v2[num%r]=1;
                     Polynomial P2(v2,num);
                     Polynomial temp(v1,num);
@@ -68,6 +68,21 @@ void Ptest::aksTest() const
                 }
             }
         }
+    }else{
+        cout<<"Composite"<<endl;
+    }
+}
+void Ptest::trivialTest() const
+{
+    bool isprime=true;
+    for(unsigned long long i=2;i<num;i++){
+        if(gcd(i,num)>1){
+            isprime=false;
+            break;
+        }
+    }
+    if(isprime){
+        cout<<"Prime"<<endl;
     }else{
         cout<<"Composite"<<endl;
     }

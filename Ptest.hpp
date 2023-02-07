@@ -10,19 +10,23 @@ using std::pow;
 class Ptest
 {
 public:
-    long long num;
+    unsigned long long num;
     Ptest(/* args */) = default;
     ~Ptest() = default;
-    Ptest(long long n){
+    Ptest(unsigned long long n){
         this->num=n;
     }
     void aksTest() const;
+    void lucasTest() const;
+    void trivialTest() const;
+    void millerRabinTest() const;
+    void pepinTest() const;
 };
-long long gcd(long long a,long long n) 
+long long gcd(unsigned long long a,unsigned long long n) 
 {
-    long long small=std::min(a,n);
-    long long large=std::max(a,n);
-    long long b=large%small;
+    unsigned long long small=std::min(a,n);
+    unsigned long long large=std::max(a,n);
+    unsigned long long b=large%small;
     while (b!=0)
     {
         large=small;
@@ -40,7 +44,7 @@ unsigned int euler(unsigned int r){
     }
     return ans;
 }
-unsigned int findr(long long n){
+unsigned int findr(unsigned long long n){
     bool next=true;
     unsigned int r=1;
     while (next)
@@ -60,7 +64,7 @@ unsigned int findr(long long n){
     }
     return r;
 }
-bool Ispower(long long n){
+bool Ispower(unsigned long long n){
     bool ans=false;
     for(unsigned int b=2;b<=std::log2(n);b++){
         double temp=(double)b;
@@ -72,12 +76,12 @@ bool Ispower(long long n){
     }
     return ans;
 }
-vector<unsigned int> binaryForm(long long n)
+vector<unsigned int> binaryForm(unsigned long long n)
 {
 unsigned int temp =floor(std::log2(n));
 vector<unsigned int> bin(temp+1);
 bin[temp]=1;
-long long remainder=n-pow(2,temp);
+unsigned long long remainder=n-pow(2,temp);
 while (remainder>0)
 {
     temp=floor(std::log2(remainder));
