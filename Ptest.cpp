@@ -15,11 +15,11 @@ void Ptest::aksTest() const
         for(unsigned int a=r;a>1;a--){
             if(gcd(a,num)>1 and gcd(a,num)<num){
                 cout<<"Composite"<<endl;
-                step2=false;
+                step3=false;
                 break;
             }
         }
-        if(step2){
+        if(step3){
             if(r>=num){
                 cout<<"Prime"<<endl;
             }else{
